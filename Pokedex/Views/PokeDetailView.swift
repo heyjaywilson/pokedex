@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PokeDetailView: View {
-    var pokeInfo: PokeCardInfo
+    var pokeInfo: Pokemon
 
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                ForEach(pokeInfo.pokeType, id: \.self) { pType in
-                    Text(pType.capitalized)
+                ForEach(pokeInfo.pTypes, id: \.self) { pType in
+                    Text(pType.type.name.capitalized)
                         .font(.caption)
                         .padding(4)
                         .background(Material.thinMaterial)
@@ -28,7 +28,7 @@ struct PokeDetailView: View {
                     Spacer()
                 }.frame(height: 40)
             }.padding(.horizontal)
-            pokeInfo.image
+            Image(systemSymbol: .pawprint)
                     .resizable()
                     .frame(width: 200, height: 200)
             Spacer()
@@ -49,14 +49,14 @@ struct PokeDetailView: View {
                     Image(systemSymbol: .heart)
                 }
             }
-            .background(pokeInfo.color)
+            .background(Color.green)
     }
 }
 
-struct PokeDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            PokeDetailView(pokeInfo: pokemonDataSet[3])
-        }
-    }
-}
+//struct PokeDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            PokeDetailView(pokeInfo: pokemonDataSet[3])
+//        }
+//    }
+//}

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PokeCard: View {
     var name: String
-    var pTypes: [String]
+    var pTypes: [PokemonType]
     var color: Color
     var pImage: Image
 
@@ -20,7 +20,7 @@ struct PokeCard: View {
                 Text(name.capitalized)
                 VStack(alignment: .leading, spacing: 4) {
                     ForEach(pTypes, id: \.self) { pType in
-                        Text(pType.capitalized)
+                        Text(pType.type.name.capitalized)
                             .font(.caption)
                             .padding(4)
                             .background(Material.thinMaterial)
@@ -34,8 +34,8 @@ struct PokeCard: View {
     }
 }
 
-struct PokeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        PokeCard(name: "Pikachu", pTypes: ["Electric"], color: .yellow, pImage: Image(systemSymbol: .bolt))
-    }
-}
+//struct PokeCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PokeCard(name: "Pikachu", pTypes: ["Electric"], color: .yellow, pImage: Image(systemSymbol: .bolt))
+//    }
+//}

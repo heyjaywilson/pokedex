@@ -9,9 +9,13 @@ import SwiftUI
 import SFSafeSymbols
 
 struct PokeCardInfo: Identifiable, Hashable {
+    static func == (lhs: PokeCardInfo, rhs: PokeCardInfo) -> Bool {
+        lhs.id == rhs.id
+    }
+
     var id: Int
     var name: String
-    var pokeType: [String]
+    var pokeType: [PokemonType]
     var image = Image(systemSymbol: .pawprint)
     var color: Color
 
@@ -20,37 +24,32 @@ struct PokeCardInfo: Identifiable, Hashable {
     }
 }
 
-let pokemonDataSet = [
-    PokeCardInfo(id: 1, name: "bulbasaur", pokeType: ["grass", "poison"], color: .green),
-    PokeCardInfo(id: 2, name: "ivysaur", pokeType: ["grass", "poison"], color: .green),
-    PokeCardInfo(id: 3, name: "venusaur", pokeType: ["grass", "poison"], color: .green),
-    PokeCardInfo(id: 4, name: "charmander", pokeType: ["fire"], color: .red),
-    PokeCardInfo(id: 25, name: "Pikachu", pokeType: ["Electric"], color: .yellow)
-]
-
 struct ContentView: View {
     let gridItems = [GridItem(spacing: 10), GridItem(spacing: 10)]
 
-    @State private var pokemon: [PokeCardInfo] = []
+    @State private var selectedPokemon: [Pokemon] = []
+    @State private var pokes: [Pokemon] = []
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: gridItems, spacing: 10) {
-                    ForEach(pokemonDataSet) { set in
+                    ForEach(pokes) { set in
                         NavigationLink(value: set) {
                             PokeCard(
                                 name: set.name,
-                                pTypes: set.pokeType,
-                                color: set.color,
-                                pImage: set.image)
+                                pTypes: set.pTypes,
+                                color: .red,
+                                pImage: Image(systemSymbol: .pawprint))
                         }.foregroundColor(.primary)
                     }.frame(height: 150)
+                }.task {
+                    pokes = await PokeService().getPokemon()
                 }
             }.navigationTitle(Text("Pokedex"))
                 .navigationBarTitleDisplayMode(.large)
                 .padding()
-                .navigationDestination(for: PokeCardInfo.self) { poke in
+                .navigationDestination(for: Pokemon.self) { poke in
                     PokeDetailView(pokeInfo: poke)
                 }
         }
