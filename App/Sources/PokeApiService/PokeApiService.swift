@@ -10,17 +10,17 @@
 import Foundation
 import Alamofire
 
-class PokeApiService {
+public class PokeApiService {
     private var baseURL = "https://pokeapi.co/api/v2/"
 
-    func getPokemonList() async -> Result<PokemonList, AFError> {
+    public func getPokemonList() async -> Result<PokemonList, AFError> {
         let request = AF.request(baseURL+PokeEndpoint.pokemon.endpoint)
         let result = await request.serializingDecodable(PokemonList.self).result
 
         return result
     }
 
-    func getPokemon(from list: PokemonList) async -> [Pokemon] {
+    public func getPokemon(from list: PokemonList) async -> [Pokemon] {
         var tempPokemon: [Pokemon] = []
         for result in list.results {
             let pokemonResult = await getPokemon(from: result.url)
@@ -35,7 +35,7 @@ class PokeApiService {
         return tempPokemon
     }
 
-    func getPokemon(from url: String) async -> Result<Pokemon, AFError> {
+    public func getPokemon(from url: String) async -> Result<Pokemon, AFError> {
         let request = AF.request(url)
         let result = await request.serializingDecodable(Pokemon.self).result
 
