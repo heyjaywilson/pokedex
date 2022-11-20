@@ -1,6 +1,6 @@
 // PokemonColor.swift
-// Pokedex
-// Copyright © 2022 CCT Plus LLC. All rights reserved.
+// 
+// 
 //
 // Follow Jay on mastodon @heyjay@iosdev.space
 //               twitter  @heyjaywilson
@@ -9,13 +9,13 @@
 
 import Foundation
 
-struct PokemonColor: Codable {
-    var id: Int
-    var name: String
-    var names: Name
-    var pokemonSpecies: NamedAPIResource
+public struct PokemonColor: Codable {
+    public var id: Int
+    public var name: String
+    public var names: Name
+    public var pokemonSpecies: NamedAPIResource
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case name
         case names

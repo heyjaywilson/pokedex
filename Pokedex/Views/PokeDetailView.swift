@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PokeApiService
 
 struct PokeDetailView: View {
     var pokeInfo: Pokemon

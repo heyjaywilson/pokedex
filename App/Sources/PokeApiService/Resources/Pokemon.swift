@@ -1,24 +1,24 @@
 // Pokemon.swift
-// Pokedex
-// Copyright © 2022 CCT Plus LLC. All rights reserved.
+// 
+// 
 //
 // Follow Jay on mastodon @heyjay@iosdev.space
 //               twitter  @heyjaywilson
-//               github   @heyjaywilson
+//               github	  @heyjaywilson
 //               website  cctplus.dev
 
 import Foundation
 
-struct Pokemon: Codable, Hashable, Identifiable {
-    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+public struct Pokemon: Codable, Hashable, Identifiable {
+    public static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
         lhs.id == rhs.id
     }
 
-    var id: Int
-    var name: String
-    var baseExperience: Int
-    var pTypes: [PokemonType]
-    var sprites: PokemonSprites
+    public var id: Int
+    public var name: String
+    public var baseExperience: Int
+    public var pTypes: [PokemonType]
+    public var sprites: PokemonSprites
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,7 +28,7 @@ struct Pokemon: Codable, Hashable, Identifiable {
         case sprites
     }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }

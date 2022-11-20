@@ -1,6 +1,6 @@
 // Name.swift
-// Pokedex
-// Copyright © 2022 CCT Plus LLC. All rights reserved.
+// 
+// 
 //
 // Follow Jay on mastodon @heyjay@iosdev.space
 //               twitter  @heyjaywilson
@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct Name: Codable {
-    var name: String
-    var language: NamedAPIResource
+public struct Name: Codable {
+    public var name: String
+    public var language: NamedAPIResource
 }

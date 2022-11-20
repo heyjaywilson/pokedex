@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PokeApiService
 import SFSafeSymbols
 
 struct PokeCardInfo: Identifiable, Hashable {
@@ -44,7 +45,7 @@ struct ContentView: View {
                         }.foregroundColor(.primary)
                     }.frame(height: 150)
                 }.task {
-                    pokes = await PokeService().getPokemon()
+//                    pokes = await PokeService().getPokemon()
                 }
             }.navigationTitle(Text("Pokedex"))
                 .navigationBarTitleDisplayMode(.large)
