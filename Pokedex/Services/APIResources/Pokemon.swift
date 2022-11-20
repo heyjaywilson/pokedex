@@ -1,37 +1,31 @@
+// Pokemon.swift
+// Pokedex
+// Copyright © 2022 CCT Plus LLC. All rights reserved.
 //
-//  Pokemon.swift
-//  Pokedex
-//
-//  Created by Maegan Wilson on 11/18/22.
-//
+// Follow Jay on mastodon @heyjay@iosdev.space
+//               twitter  @heyjaywilson
+//               github   @heyjaywilson
+//               website  cctplus.dev
 
 import Foundation
 
-struct PokemonType: Hashable, Equatable, Codable {
-    static func == (lhs: PokemonType, rhs: PokemonType) -> Bool {
-        lhs.slot == rhs.slot
-    }
-
-    var slot: Int
-    var type: NamedAPIResource
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(slot)
-    }
-
-}
-
 struct Pokemon: Codable, Hashable, Identifiable {
+    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        lhs.id == rhs.id
+    }
+
     var id: Int
     var name: String
     var baseExperience: Int
     var pTypes: [PokemonType]
+    var sprites: PokemonSprites
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case baseExperience = "base_experience"
         case pTypes = "types"
+        case sprites
     }
 
     func hash(into hasher: inout Hasher) {

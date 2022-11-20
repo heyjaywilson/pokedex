@@ -22,8 +22,6 @@ class PokeService {
     func getPokemon() async -> [Pokemon] {
         let request = AF.request(baseURL+PokeApi.pokemon.endPoint)
         let response = await request.serializingDecodable(PokemonList.self).response
-        debugPrint(response)
-
         let results = response.value!
 
         var pokemons: [Pokemon] = []
@@ -32,14 +30,12 @@ class PokeService {
             pokemons.append(poke)
         }
 
-        debugPrint(pokemons.count)
         return pokemons
     }
 
     func getPokemonFrom(url: String) async -> Pokemon {
         let request = AF.request(url)
         let response = await request.serializingDecodable(Pokemon.self).response
-//        debugPrint(response.value)
         return response.value!
     }
 }

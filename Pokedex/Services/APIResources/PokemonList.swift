@@ -1,9 +1,11 @@
+// Pokemon.swift
+// Pokedex
+// Copyright © 2022 CCT Plus LLC. All rights reserved.
 //
-//  Pokemon.swift
-//  Pokedex
-//
-//  Created by Maegan Wilson on 11/18/22.
-//
+// Follow Jay on mastodon @heyjay@iosdev.space
+//               twitter  @heyjaywilson
+//               github   @heyjaywilson
+//               website  cctplus.dev
 
 import Foundation
 
