@@ -26,7 +26,9 @@ public struct PokeList: View {
                         color: Color.red,
                         sprites: pokemon.sprites,
                         species: pokemon.species
-                    )
+                    ).task {
+                        await viewModel.loadMore()
+                    }
                 }
             }
         }.task {

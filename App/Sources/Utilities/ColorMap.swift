@@ -36,6 +36,10 @@ public struct ColorMap {
             color = .white
         case "purple":
             color = .purple
+        case "pink":
+            color = .pink
+        case "gray":
+            color = .gray
         default:
             print("COLOR NOT FOUND: \(name)")
             color = .gray

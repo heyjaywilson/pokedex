@@ -14,8 +14,8 @@ import Combine
 
 class PokeListViewModel: ObservableObject {
     @Published var pokemon: [Pokemon] = []
-    @Published var previous: String? = nil
-    @Published var next: String? = nil
+    var previous: String? = nil
+    var next: String? = nil
 
     var pokeList: PokemonList? = nil
 
@@ -25,10 +25,8 @@ class PokeListViewModel: ObservableObject {
         let result = await apiService.getPokemonList()
         do {
             let currentResults = try result.get()
-            Task { @MainActor in
-                previous = currentResults.previous
-                next = currentResults.next
-            }
+            previous = currentResults.previous
+            next = currentResults.next
             pokeList = currentResults
         } catch {
             print("PokeListViewModel.fetchPokemon(): \(error)")
@@ -41,6 +39,41 @@ class PokeListViewModel: ObservableObject {
 
         Task { @MainActor in
             pokemon = await apiService.getPokemon(from: pokeList)
+        }
+    }
+
+    func loadMore() async {
+        guard let next else {
+            return
+        }
+        var nextPokeList: PokemonList? = nil
+
+        let result = await apiService.getPokemonList(from: next)
+
+        var shouldSkip = false
+
+        do {
+            let currentResults = try result.get()
+            shouldSkip = currentResults.previous == previous
+            previous = currentResults.previous
+            self.next = currentResults.next
+            nextPokeList = currentResults
+        } catch {
+            print("PokeListViewModel.loadMore(): \(error)")
+        }
+
+        if !shouldSkip {
+            guard let nextPokeList else {
+                return
+            }
+
+            let nextPokemon = await apiService.getPokemon(from: nextPokeList)
+
+            Task { @MainActor in
+                for poke in nextPokemon {
+                    pokemon.append(poke)
+                }
+            }
         }
     }
 }

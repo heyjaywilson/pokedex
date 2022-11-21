@@ -22,6 +22,13 @@ public class PokeApiService {
         return result
     }
 
+    public func getPokemonList(from url: String) async -> Result<PokemonList, AFError> {
+        let request = AF.request(url)
+        let result = await request.serializingDecodable(PokemonList.self).result
+
+        return result
+    }
+
     public func getPokemon(from list: PokemonList) async -> [Pokemon] {
         var tempPokemon: [Pokemon] = []
         for result in list.results {
@@ -47,7 +54,7 @@ public class PokeApiService {
     public func getColor(for name: String) async -> Result<PokemonColor, AFError> {
         let request = AF.request(baseURL+PokeEndpoint.pokemonColor.endpoint+"/"+name)
         let result = await request.serializingDecodable(PokemonColor.self).result
-        
+
         return result
     }
 

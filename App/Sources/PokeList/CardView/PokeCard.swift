@@ -25,7 +25,7 @@ struct PokeCard: View {
             AsyncImage(url: viewModel.image(from: sprites)) { img in
                 img
             } placeholder: {
-                Image(systemSymbol: .pawprint)
+                ProgressView()
             }.position(x: 120, y: 100-35)
             VStack(alignment: .leading) {
                 Text(name.capitalized)
