@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-import PokeApiService
 import SFSafeSymbols
+import PokeApiService
+import PokeList
 
 struct PokeCardInfo: Identifiable, Hashable {
     static func == (lhs: PokeCardInfo, rhs: PokeCardInfo) -> Bool {
@@ -28,32 +29,8 @@ struct PokeCardInfo: Identifiable, Hashable {
 struct ContentView: View {
     let gridItems = [GridItem(spacing: 10), GridItem(spacing: 10)]
 
-    @State private var selectedPokemon: [Pokemon] = []
-    @State private var pokes: [Pokemon] = []
-
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: 10) {
-                    ForEach(pokes) { set in
-                        NavigationLink(value: set) {
-                            PokeCard(
-                                name: set.name,
-                                pTypes: set.pTypes,
-                                color: .red,
-                                pImage: Image(systemSymbol: .pawprint))
-                        }.foregroundColor(.primary)
-                    }.frame(height: 150)
-                }.task {
-//                    pokes = await PokeService().getPokemon()
-                }
-            }.navigationTitle(Text("Pokedex"))
-                .navigationBarTitleDisplayMode(.large)
-                .padding()
-                .navigationDestination(for: Pokemon.self) { poke in
-                    PokeDetailView(pokeInfo: poke)
-                }
-        }
+        PokeList()
     }
 }
 
