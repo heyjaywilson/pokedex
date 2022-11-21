@@ -13,6 +13,8 @@ import Alamofire
 public class PokeApiService {
     private var baseURL = "https://pokeapi.co/api/v2/"
 
+    public static let shared = PokeApiService()
+
     public func getPokemonList() async -> Result<PokemonList, AFError> {
         let request = AF.request(baseURL+PokeEndpoint.pokemon.endpoint)
         let result = await request.serializingDecodable(PokemonList.self).result
@@ -35,9 +37,25 @@ public class PokeApiService {
         return tempPokemon
     }
 
-    public func getPokemon(from url: String) async -> Result<Pokemon, AFError> {
+    private func getPokemon(from url: String) async -> Result<Pokemon, AFError> {
         let request = AF.request(url)
         let result = await request.serializingDecodable(Pokemon.self).result
+
+        return result
+    }
+
+    public func getColor(for name: String) async -> Result<PokemonColor, AFError> {
+        let request = AF.request(baseURL+PokeEndpoint.pokemonColor.endpoint+"/"+name)
+        let result = await request.serializingDecodable(PokemonColor.self).result
+
+        print(result)
+        return result
+    }
+
+    public func getSpecies(for name: String) async -> Result<PokemonSpecies, AFError> {
+        let request = AF.request(baseURL+PokeEndpoint.pokemonSpecies.endpoint+"/"+name)
+        let decoded = request.serializingDecodable(PokemonSpecies.self)
+        let result = await decoded.result
 
         return result
     }

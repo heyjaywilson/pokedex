@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import PokeList
 
 @main
 struct PokedexApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PokeList()
         }
     }
 }

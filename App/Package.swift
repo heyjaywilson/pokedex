@@ -13,7 +13,12 @@ let package = Package(
         .library(
             name: "App",
             targets: ["App"]),
-        .library(name: "PokeApiService", targets: ["PokeApiService"])
+        .library(
+            name: "PokeApiService",
+            targets: ["PokeApiService"]),
+        .library(
+            name: "PokeList",
+            targets: ["PokeList"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.1")),
@@ -25,6 +30,9 @@ let package = Package(
         .target(
             name: "PokeApiService",
             dependencies: ["Alamofire"]),
+        .target(
+            name: "PokeList",
+            dependencies: ["SFSafeSymbols", "PokeApiService"]),
         .target(
             name: "App",
             dependencies: []),

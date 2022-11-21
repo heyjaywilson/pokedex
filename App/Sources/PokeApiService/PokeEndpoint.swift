@@ -10,8 +10,10 @@
 import Foundation
 
 enum PokeEndpoint: String {
-    case pokemon
     case ability
+    case pokemon
+    case pokemonColor = "pokemon-color"
+    case pokemonSpecies = "pokemon-species"
 
     var endpoint: String { self.rawValue }
 }

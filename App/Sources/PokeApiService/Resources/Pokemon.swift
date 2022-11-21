@@ -18,6 +18,7 @@ public struct Pokemon: Codable, Hashable, Identifiable {
     public var name: String
     public var baseExperience: Int
     public var pTypes: [PokemonType]
+    public var species: NamedAPIResource
     public var sprites: PokemonSprites
 
     enum CodingKeys: String, CodingKey {
@@ -26,6 +27,7 @@ public struct Pokemon: Codable, Hashable, Identifiable {
         case baseExperience = "base_experience"
         case pTypes = "types"
         case sprites
+        case species
     }
 
     public func hash(into hasher: inout Hasher) {

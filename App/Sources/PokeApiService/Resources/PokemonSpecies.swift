@@ -1,4 +1,4 @@
-// PokemonColor.swift
+// PokemonSpecies.swift
 // 
 // 
 //
@@ -9,16 +9,14 @@
 
 import Foundation
 
-public struct PokemonColor: Codable {
+public struct PokemonSpecies: Codable {
     public var id: Int
     public var name: String
-    public var names: [Name]
-    public var pokemonSpecies: [NamedAPIResource]
+    public var color: NamedAPIResource
 
-    public enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: CodingKey {
         case id
         case name
-        case names
-        case pokemonSpecies = "pokemon_species"
+        case color
     }
 }

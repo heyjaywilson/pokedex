@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37029ABE292ABA710085B03A /* PokeApiService in Frameworks */ = {isa = PBXBuildFile; productRef = 37029ABD292ABA710085B03A /* PokeApiService */; };
+		37029AC0292ACF160085B03A /* PokeList in Frameworks */ = {isa = PBXBuildFile; productRef = 37029ABF292ACF160085B03A /* PokeList */; };
 		379A070029282513008EEC88 /* PokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A06FF29282513008EEC88 /* PokedexApp.swift */; };
 		379A070229282513008EEC88 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A070129282513008EEC88 /* ContentView.swift */; };
 		379A070429282513008EEC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379A070329282513008EEC88 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 				379A070F29282630008EEC88 /* SFSafeSymbols in Frameworks */,
 				379A0717292838BD008EEC88 /* Alamofire in Frameworks */,
 				37029ABE292ABA710085B03A /* PokeApiService in Frameworks */,
+				37029AC0292ACF160085B03A /* PokeList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +125,7 @@
 				379A070E29282630008EEC88 /* SFSafeSymbols */,
 				379A0716292838BD008EEC88 /* Alamofire */,
 				37029ABD292ABA710085B03A /* PokeApiService */,
+				37029ABF292ACF160085B03A /* PokeList */,
 			);
 			productName = Pokedex;
 			productReference = 379A06FC29282513008EEC88 /* Pokedex.app */;
@@ -411,6 +414,10 @@
 		37029ABD292ABA710085B03A /* PokeApiService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PokeApiService;
+		};
+		37029ABF292ACF160085B03A /* PokeList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PokeList;
 		};
 		379A070E29282630008EEC88 /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
