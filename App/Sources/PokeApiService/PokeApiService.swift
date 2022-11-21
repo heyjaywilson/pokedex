@@ -47,8 +47,7 @@ public class PokeApiService {
     public func getColor(for name: String) async -> Result<PokemonColor, AFError> {
         let request = AF.request(baseURL+PokeEndpoint.pokemonColor.endpoint+"/"+name)
         let result = await request.serializingDecodable(PokemonColor.self).result
-
-        print(result)
+        
         return result
     }
 

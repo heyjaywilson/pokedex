@@ -10,6 +10,7 @@
 import Foundation
 import SwiftUI
 import PokeApiService
+import Utilities
 
 class PokeCardViewModel: ObservableObject {
     @Published var color: Color = .gray
@@ -34,30 +35,19 @@ class PokeCardViewModel: ObservableObject {
         switch result {
         case .success(let pokeColor):
             Task { @MainActor in
-                switch pokeColor.name {
-                case "black":
-                    color = .black
-                case "blue":
-                    color = .blue
-                case "brown":
-                    color = .brown
-                case "green":
-                    color = .green
-                case "yellow":
-                    color = .yellow
-                case "red":
-                    color = .red
-                case "white":
-                    color = .white
-                case "purple":
-                    color = .purple
-                default:
-                    print("COLOR: \(pokeColor.name)")
-                    color = .gray
-                }
+                color = ColorMap(name: pokeColor.name).colorMap()
             }
         case .failure(let failure):
             print("PokeCardViewModel.setColor(name:): \(failure.localizedDescription)")
         }
+    }
+
+    func image(from sprites: PokemonSprites) -> URL? {
+        guard let frontImage = sprites.front_default else {
+            print("\(sprites)")
+            return nil
+        }
+
+        return URL(string: frontImage)
     }
 }

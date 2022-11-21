@@ -22,7 +22,11 @@ struct PokeCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            pokeImage().position(x: 120, y: 100-25)
+            AsyncImage(url: viewModel.image(from: sprites)) { img in
+                img
+            } placeholder: {
+                Image(systemSymbol: .pawprint)
+            }.position(x: 120, y: 100-35)
             VStack(alignment: .leading) {
                 Text(name.capitalized)
                 VStack(alignment: .leading, spacing: 4) {
