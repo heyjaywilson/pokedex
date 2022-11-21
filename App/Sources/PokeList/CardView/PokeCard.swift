@@ -14,7 +14,6 @@ import PokeApiService
 struct PokeCard: View {
     var name: String
     var pokeTypes: [PokemonType]
-    var color: Color
     var sprites: PokemonSprites
     var species: NamedAPIResource
 

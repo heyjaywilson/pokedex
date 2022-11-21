@@ -1,14 +1,16 @@
+// PokeDetail.swift
+// 
+// 
 //
-//  PokeDetailView.swift
-//  Pokedex
-//
-//  Created by Maegan Wilson on 11/18/22.
-//
+// Follow Jay on mastodon @heyjay@iosdev.space
+//               twitter  @heyjaywilson
+//               github	  @heyjaywilson
+//               website  cctplus.dev
 
 import SwiftUI
 import PokeApiService
 
-struct PokeDetailView: View {
+struct PokeDetail: View {
     var pokeInfo: Pokemon
 
     var body: some View {
@@ -53,11 +55,3 @@ struct PokeDetailView: View {
             .background(Color.green)
     }
 }
-
-//struct PokeDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            PokeDetailView(pokeInfo: pokemonDataSet[3])
-//        }
-//    }
-//}

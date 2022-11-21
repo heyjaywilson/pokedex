@@ -32,7 +32,6 @@ public struct PokeList: View {
                                 PokeCard(
                                     name: pokemon.name,
                                     pokeTypes: pokemon.pTypes,
-                                    color: Color.red,
                                     sprites: pokemon.sprites,
                                     species: pokemon.species
                                 ).foregroundColor(.primary)
@@ -44,7 +43,7 @@ public struct PokeList: View {
                     .navigationBarTitleDisplayMode(.large)
                     .padding()
                     .navigationDestination(for: Pokemon.self) { poke in
-                        Text(poke.name)
+                        PokeDetail(pokeInfo: poke)
                     }
             }
         }.task {
